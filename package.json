@@ -1,0 +1,56 @@
+{
+  "name": "simple-commitlinter",
+  "description": "a vue style commit lint",
+  "main": "./dist/index.cjs",
+  "packageManager": "pnpm@8.6.0",
+  "author": "peng.j.1995@gmail.com",
+  "homepage": "https://github.com/penjj",
+  "keywords": [
+    "commit lint",
+    "vue commit lint style"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "require":  "./dist/index.cjs"
+    }
+  },
+  "bin": {
+    "simple-commitlinter": "./dist/index.cjs"
+  },
+  "scripts": {
+    "prepare": "simple-git-hooks && pnpm build",
+    "build": "unbuild"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "node ./dist/index.cjs"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/penjj/simple-commitlinter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/penjj/simple-commitlinter/issues"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.8",
+    "@penjj/eslint-config": "^0.3.1",
+    "typescript": "^5.2.2",
+    "unbuild": "^2.0.0",
+    "simple-git-hooks": "^2.9.0",
+    "prettier": "^3.0.0",
+    "lint-staged": "^14.0.1"
+  },
+  "eslintConfig": {
+    "extends": "@penjj"
+  },
+  "prettier": "@penjj/prettier-config"
+}
